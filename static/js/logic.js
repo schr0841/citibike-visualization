@@ -5,7 +5,9 @@ let mapZoomLevel = 12;
 function createMap(bikeStations) {
 
   // Create the tile layer that will be the background of our map.
-  let streetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  let streetmap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      referrerPolicy: "strict-origin-when-cross-origin",
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   });
 
@@ -43,7 +45,7 @@ let bikeMarkers = [];
   // Loop through the stations array.
   for (let i=0; i< stations.length; i++){
     // For each station, create a marker, and bind a popup with the station's name.
-    let marker = L.marker([stations[i].lat, stations[i].lon]).bindPopup("<h3>" + stations[i].name + "<h3><h3>Capacity: " + stations[i].capacity + "</h3>");
+    let marker = L.marker([stations[i].lat, stations[i].lon]).bindPopup("<h3>" + stations[i].name + "</h3><h3>Capacity: " + stations[i].capacity + "</h3>");
     // Add the marker to the bikeMarkers array.
     bikeMarkers.push(marker);
   }
